@@ -1,5 +1,7 @@
 package com.example.timer1test.ui.home
 
+import android.content.res.AssetManager
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timer1test.AppData
-import com.example.timer1test.model.Rider
 import com.example.timer1test.databinding.FragmentHomeBinding
 import com.example.timer1test.databinding.RaceListItemBinding
 import com.example.timer1test.model.AppMode
+import com.example.timer1test.model.Rider
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+
 
 class HomeFragment : Fragment() {
 
@@ -114,5 +117,6 @@ class ItemViewHolder(val view: RaceListItemBinding): RecyclerView.ViewHolder(vie
                 else df.format(rider.endTime)
             }
         }
+
     }
 }
