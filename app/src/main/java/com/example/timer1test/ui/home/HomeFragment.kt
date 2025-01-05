@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.timer1test.Rider
-import com.example.timer1test.appData
+import com.example.timer1test.AppData
+import com.example.timer1test.model.Rider
 import com.example.timer1test.databinding.FragmentHomeBinding
 import com.example.timer1test.databinding.RaceListItemBinding
 import java.time.LocalDateTime
@@ -31,12 +31,12 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         // recyclerView
-        val adapter = RaceAdapter(appData.riderList)
+        val adapter = RaceAdapter(AppData.riderList)
         binding.riderRecyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.riderRecyclerView.adapter = adapter
 
         binding.go.setOnClickListener {
-            var r = appData.getFirstRider()
+            var r = AppData.getFirstRider()
             r?.let{
                 r.startTime = LocalDateTime.now()
                 adapter.notifyDataSetChanged()

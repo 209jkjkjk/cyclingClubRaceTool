@@ -17,7 +17,9 @@
         android:id="@+id/go"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:text="添加"
+        android:text="Ride On !"
+        android:textSize="66sp"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
