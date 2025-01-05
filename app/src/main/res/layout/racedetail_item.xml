@@ -17,6 +17,13 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="我是zoker"/>
+    <TextView
+        android:id="@+id/riderTime"
+        android:gravity="center_vertical|end"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="9dp"
+        android:text="22:33:11.2334"/>
     <Button
         android:id="@+id/edit"
         android:layout_width="wrap_content"

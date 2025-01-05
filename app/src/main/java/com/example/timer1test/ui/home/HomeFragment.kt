@@ -17,6 +17,7 @@ import com.example.timer1test.databinding.RacedetailItemBinding
 import com.example.timer1test.databinding.RaceinfoItemBinding
 import com.example.timer1test.ui.dashboard.riderAdapter
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class HomeFragment : Fragment() {
 
@@ -84,6 +85,11 @@ class RaceAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<ItemViewHold
 class ItemViewHolder(val view: RacedetailItemBinding): RecyclerView.ViewHolder(view.root){
     fun bind(rider: Rider){
         view.riderId.text = "#${rider.id}"
-        view.riderinfo.text = rider.name + rider.startTime
+        val df = DateTimeFormatter.ofPattern("HH:mm:ss.SSSS")
+        var timestr:String
+        if(rider.startTime == null) timestr = "未出发"
+        else timestr = df.format(rider.startTime)
+        view.riderTime.text = timestr
+        view.riderinfo.text = "${rider.name}"
     }
 }
