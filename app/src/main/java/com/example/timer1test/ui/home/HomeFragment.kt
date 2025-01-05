@@ -1,5 +1,6 @@
 package com.example.timer1test.ui.home
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,22 +49,21 @@ class HomeFragment : Fragment() {
             when(AppData.appMode){
                 AppMode.Start -> {
                     // 找到下一个未出发的选手
-                    var r = AppData.getNextStartRider()
+                    val r = AppData.getNextStartRider()
                     r?.let{
                         r.startTime = LocalDateTime.now()
-                        adapter.notifyDataSetChanged()
                     }
                 }
                 AppMode.Finnish ->{
                     // 找到下一个未到达的选手
-                    var r = AppData.getNextFinishRider()
+                    val r = AppData.getNextFinishRider()
                     r?.let{
                         r.endTime = LocalDateTime.now()
-                        adapter.notifyDataSetChanged()
                     }
                 }
             }
-
+            adapter.selectedPosition = -1
+            adapter.notifyDataSetChanged()
         }
 
 
@@ -78,44 +78,64 @@ class HomeFragment : Fragment() {
 
 
 // 下面是recyclerView代码
-class RaceAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<ItemViewHolder>(){
-    lateinit var filteredList: List<Rider>
+class RaceAdapter(val riderList: List<Rider>) : RecyclerView.Adapter<RaceAdapter.ItemViewHolder>(){
+    var selectedPosition: Int = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding = RaceListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
-        val holder = ItemViewHolder(binding)
-        filteredList = itemList.filter { it.startTime != null }
-        return holder
+        val binding =
+            RaceListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ItemViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return riderList.size
     }
 
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        var item = itemList[position]
+        val item = riderList[position]
         holder.bind(item)
+        if (selectedPosition == position) {
+            AppData.nextRider = riderList[position]
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFA1C3"));
+        } else {
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
     }
 
-}
 
-class ItemViewHolder(val view: RaceListItemBinding): RecyclerView.ViewHolder(view.root){
-    fun bind(rider: Rider){
-        view.riderId.text = "#${rider.id}"
-        view.riderName.text = rider.name
-        val df = DateTimeFormatter.ofPattern("HH:mm:ss.SSSS")
-        // 根据运行模式切换默认字样
-        view.riderTime.text = when(AppData.appMode){
-            AppMode.Start -> {
-                if(rider.startTime == null) "未出发"
-                else df.format(rider.startTime)
+    inner class ItemViewHolder(val view: RaceListItemBinding): RecyclerView.ViewHolder(view.root){
+        init{
+            itemView.setOnClickListener { // 获取当前点击的位置
+                val position = getAdapterPosition()
+                // 如果当前位置和之前选中的位置不同，则更新选中位置，并刷新RecyclerView
+                if (position != selectedPosition) {
+                    selectedPosition = position
+                    notifyDataSetChanged()
+                }
             }
-            AppMode.Finnish -> {
-                if(rider.endTime == null) "未到达"
-                else df.format(rider.endTime)
+
+        }
+
+        fun bind(rider: Rider){
+            view.riderId.text = "#${rider.id}"
+            view.riderName.text = rider.name
+            val df = DateTimeFormatter.ofPattern("HH:mm:ss.SSSS")
+            // 根据运行模式切换默认字样
+            view.riderTime.text = when(AppData.appMode){
+                AppMode.Start -> {
+                    if(rider.startTime == null) "未出发"
+                    else df.format(rider.startTime)
+                }
+                AppMode.Finnish -> {
+                    if(rider.endTime == null) "未到达"
+                    else df.format(rider.endTime)
+                }
             }
         }
 
+
     }
 }
+
+

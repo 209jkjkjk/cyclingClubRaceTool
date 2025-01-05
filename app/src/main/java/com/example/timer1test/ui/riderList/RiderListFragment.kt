@@ -55,7 +55,7 @@ class RiderListFragment : Fragment() {
 }
 
 // 下面是recyclerView代码
-class riderAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<ItemViewHolder>(){
+class riderAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<riderAdapter.ItemViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = RiderListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
         val holder = ItemViewHolder(binding)
@@ -77,14 +77,14 @@ class riderAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<ItemViewHol
         var item = itemList[position]
         holder.bind(item)
     }
-
-}
-
-class ItemViewHolder(val view: RiderListItemBinding): RecyclerView.ViewHolder(view.root){
-    fun bind(rider: Rider){
-        view.riderId.text = "#${rider.id}"
-        view.riderName.text = rider.name
+    class ItemViewHolder(val view: RiderListItemBinding): RecyclerView.ViewHolder(view.root){
+        fun bind(rider: Rider){
+            view.riderId.text = "#${rider.id}"
+            view.riderName.text = rider.name
+        }
     }
+
 }
+
 
 
