@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 滑块控制器 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 通过 android:state_checked 判断 是否开关-->
+    <!-- 开启样式 -->
+    <item android:drawable="@drawable/workmode_switch_thumb_on" android:state_checked="true" />
+    <!-- 关闭样式 -->
+    <item android:drawable="@drawable/workmode_switch_thumb_off" android:state_checked="false" />
+</selector>

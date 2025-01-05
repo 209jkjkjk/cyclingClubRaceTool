@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 滑块开启状态 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- 主色 -->
+    <solid android:color="#FFFF00" />
+
+    <!-- 尺寸 -->
+    <size
+        android:width="20dp"
+        android:height="20dp" />
+
+    <!-- 边框 -->
+    <stroke android:width="1dp"
+        android:color="#DAA520"/>
+
+</shape>

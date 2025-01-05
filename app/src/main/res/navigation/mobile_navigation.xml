@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.timer1test.ui.notifications.NotificationsFragment"
+        android:name="com.example.timer1test.ui.tools.ToolsFragment"
         android:label="@string/title_tools"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_tools" />
 </navigation>
