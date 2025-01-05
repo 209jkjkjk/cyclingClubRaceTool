@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timer1test.Rider
 import com.example.timer1test.appData
-import com.example.timer1test.databinding.FragmentDashboardBinding
+import com.example.timer1test.databinding.FragmentRiderListBinding
 import com.example.timer1test.databinding.RiderListItemBinding
 
 class RiderListFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentRiderListBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -27,7 +27,7 @@ class RiderListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentRiderListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         // recyclerView

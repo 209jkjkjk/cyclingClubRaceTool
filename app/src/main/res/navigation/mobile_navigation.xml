@@ -15,7 +15,7 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.example.timer1test.ui.riderList.RiderListFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_rider_list" />
 
     <fragment
         android:id="@+id/navigation_notifications"
