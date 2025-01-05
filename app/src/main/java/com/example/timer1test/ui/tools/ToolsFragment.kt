@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.timer1test.AppData
+import com.example.timer1test.R
 import com.example.timer1test.databinding.FragmentToolsBinding
 import com.example.timer1test.model.AppMode
 
@@ -28,6 +29,7 @@ class ToolsFragment : Fragment() {
 
         binding.workmodeSwitch.setOnCheckedChangeListener{ _, isChecked ->
             AppData.appMode = if (isChecked) AppMode.Finnish else AppMode.Start
+            binding.workmodeString.text = if (isChecked) resources.getString(R.string.workMode_Finish) else resources.getString(R.string.workMode_Start)
         }
 
         return root

@@ -20,12 +20,13 @@
             android:gravity="center_vertical"
             android:text="@string/workMode"/>
         <TextView
+            android:id="@+id/workmodeString"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="30sp"
             android:gravity="center_vertical"
-            android:text="@string/startMode"/>
+            android:text="@string/workMode_Start"/>
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/workmodeSwitch"
@@ -36,6 +37,7 @@
             android:textSize="30sp"
             android:scaleX="1.5"
             android:scaleY="1.5"
+            android:checked="false"
             app:trackTint="@color/workmode_switch_track_color"
             app:trackTintMode="multiply"
             app:thumbTint="@color/workmode_switch_thumb_color"

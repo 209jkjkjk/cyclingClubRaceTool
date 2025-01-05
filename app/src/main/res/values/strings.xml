@@ -8,6 +8,6 @@
     <string name="startButtonText">Ride\nOn!</string>
     <string name="finishButtonText">Punch\nLine!</string>
     <string name="workMode">运行模式：</string>
-    <string name="startMode">起点</string>
-    <string name="finishMode">起点</string>
+    <string name="workMode_Start">起点</string>
+    <string name="workMode_Finish">终点</string>
 </resources>

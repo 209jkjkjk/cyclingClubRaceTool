@@ -107,9 +107,16 @@ class RaceAdapter(val riderList: List<Rider>) : RecyclerView.Adapter<RaceAdapter
     inner class ItemViewHolder(val view: RaceListItemBinding): RecyclerView.ViewHolder(view.root){
         init{
             itemView.setOnClickListener { // 获取当前点击的位置
-                val position = getAdapterPosition()
+                val position = adapterPosition
+                // 如果已经有时间则不能选中，并删除之前的选中
+                if((AppData.appMode == AppMode.Start && riderList[position].startTime != null) ||
+                    (AppData.appMode == AppMode.Finnish && riderList[position].endTime != null)){
+                    selectedPosition = -1
+                    notifyDataSetChanged()
+                    return@setOnClickListener
+                }
                 // 如果当前位置和之前选中的位置不同，则更新选中位置，并刷新RecyclerView
-                if (position != selectedPosition) {
+                else if (position != selectedPosition) {
                     selectedPosition = position
                     notifyDataSetChanged()
                 }
