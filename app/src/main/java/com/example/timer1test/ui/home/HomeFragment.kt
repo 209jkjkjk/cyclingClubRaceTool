@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.timer1test.Rider
 import com.example.timer1test.appData
 import com.example.timer1test.databinding.FragmentHomeBinding
-import com.example.timer1test.databinding.RacedetailItemBinding
+import com.example.timer1test.databinding.RaceListItemBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -59,7 +59,7 @@ class RaceAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<ItemViewHold
     lateinit var filteredList: List<Rider>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding = RacedetailItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
+        val binding = RaceListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
         val holder = ItemViewHolder(binding)
         filteredList = itemList.filter { it.startTime != null }
         return holder
@@ -77,7 +77,7 @@ class RaceAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<ItemViewHold
 
 }
 
-class ItemViewHolder(val view: RacedetailItemBinding): RecyclerView.ViewHolder(view.root){
+class ItemViewHolder(val view: RaceListItemBinding): RecyclerView.ViewHolder(view.root){
     fun bind(rider: Rider){
         view.riderId.text = "#${rider.id}"
         val df = DateTimeFormatter.ofPattern("HH:mm:ss.SSSS")
