@@ -1,22 +1,19 @@
-package com.example.timer1test.ui.dashboard
+package com.example.timer1test.ui.riderList
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.timer1test.Rider
 import com.example.timer1test.appData
 import com.example.timer1test.databinding.FragmentDashboardBinding
-import com.example.timer1test.databinding.RaceinfoItemBinding
+import com.example.timer1test.databinding.RiderListItemBinding
 
-class DashboardFragment : Fragment() {
+class RiderListFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -60,7 +57,7 @@ class DashboardFragment : Fragment() {
 // 下面是recyclerView代码
 class riderAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<ItemViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding = RaceinfoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
+        val binding = RiderListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
         val holder = ItemViewHolder(binding)
         binding.delete.setOnClickListener{
             Log.d("lai", "lai")
@@ -83,7 +80,7 @@ class riderAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<ItemViewHol
 
 }
 
-class ItemViewHolder(val view: RaceinfoItemBinding): RecyclerView.ViewHolder(view.root){
+class ItemViewHolder(val view: RiderListItemBinding): RecyclerView.ViewHolder(view.root){
     fun bind(rider: Rider){
         view.riderId.text = "#${rider.id}"
         view.riderName.text = rider.name

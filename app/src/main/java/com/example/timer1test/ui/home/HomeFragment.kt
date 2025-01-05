@@ -1,21 +1,16 @@
 package com.example.timer1test.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timer1test.Rider
 import com.example.timer1test.appData
 import com.example.timer1test.databinding.FragmentHomeBinding
 import com.example.timer1test.databinding.RacedetailItemBinding
-import com.example.timer1test.databinding.RaceinfoItemBinding
-import com.example.timer1test.ui.dashboard.riderAdapter
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
