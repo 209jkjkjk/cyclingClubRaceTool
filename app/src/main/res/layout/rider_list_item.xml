@@ -7,20 +7,17 @@
         android:id="@+id/riderId"
         android:gravity="center_vertical"
         android:layout_width="60dp"
-        android:layout_height="match_parent"
-        android:text="123"
-        />
+        android:layout_height="match_parent"/>
     <TextView
         android:id="@+id/riderName"
         android:gravity="center_vertical"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="我是zoker"/>
+        android:layout_weight="1"/>
     <Button
         android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="删除"/>
+        android:text="@string/delete"/>
 
 </LinearLayout>

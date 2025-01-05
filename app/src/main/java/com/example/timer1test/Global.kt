@@ -6,7 +6,7 @@ import com.example.timer1test.model.Rider
 // 全局数据
 object AppData {
     // 工作模式
-    var appMode = AppMode.Start
+    var appMode = AppMode.Finnish
 
     var riderList: MutableList<Rider> = mutableListOf()
     init{

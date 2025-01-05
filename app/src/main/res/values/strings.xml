@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">timer1test</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_time">计时</string>
+    <string name="title_riders">人员</string>
+    <string name="title_tools">工具</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="startButtonText">Ride On!</string>
+    <string name="finishButtonText">Punch Line!</string>
 </resources>

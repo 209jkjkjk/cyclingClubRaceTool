@@ -1,7 +1,5 @@
 package com.example.timer1test.ui.home
 
-import android.content.res.AssetManager
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timer1test.AppData
+import com.example.timer1test.R
 import com.example.timer1test.databinding.FragmentHomeBinding
 import com.example.timer1test.databinding.RaceListItemBinding
 import com.example.timer1test.model.AppMode
@@ -35,11 +34,11 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
         // 根据工作模式替换字样
         binding.timeButton.text = when(AppData.appMode){
-            AppMode.Start -> "Ride On!"
-            AppMode.Finnish -> "Punch Line!"
+            AppMode.Start -> resources.getString(R.string.startButtonText)
+            AppMode.Finnish -> resources.getString(R.string.finishButtonText)
         }
 
-        // recyclerView
+        // 注册recyclerView
         val adapter = RaceAdapter(AppData.riderList)
         binding.riderRecyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.riderRecyclerView.adapter = adapter
@@ -104,7 +103,7 @@ class RaceAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<ItemViewHold
 class ItemViewHolder(val view: RaceListItemBinding): RecyclerView.ViewHolder(view.root){
     fun bind(rider: Rider){
         view.riderId.text = "#${rider.id}"
-        view.riderName.text = "${rider.name}"
+        view.riderName.text = rider.name
         val df = DateTimeFormatter.ofPattern("HH:mm:ss.SSSS")
         // 根据运行模式切换默认字样
         view.riderTime.text = when(AppData.appMode){
