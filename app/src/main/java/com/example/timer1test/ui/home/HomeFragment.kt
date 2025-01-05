@@ -11,6 +11,7 @@ import com.example.timer1test.AppData
 import com.example.timer1test.model.Rider
 import com.example.timer1test.databinding.FragmentHomeBinding
 import com.example.timer1test.databinding.RaceListItemBinding
+import com.example.timer1test.model.AppMode
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -29,18 +30,38 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        // 根据工作模式替换字样
+        binding.timeButton.text = when(AppData.appMode){
+            AppMode.Start -> "Ride On!"
+            AppMode.Finnish -> "Punch Line!"
+        }
 
         // recyclerView
         val adapter = RaceAdapter(AppData.riderList)
         binding.riderRecyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.riderRecyclerView.adapter = adapter
 
-        binding.go.setOnClickListener {
-            var r = AppData.getFirstRider()
-            r?.let{
-                r.startTime = LocalDateTime.now()
-                adapter.notifyDataSetChanged()
+        // 按钮功能
+        binding.timeButton.setOnClickListener {
+            when(AppData.appMode){
+                AppMode.Start -> {
+                    // 找到下一个未出发的选手
+                    var r = AppData.getNextStartRider()
+                    r?.let{
+                        r.startTime = LocalDateTime.now()
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+                AppMode.Finnish ->{
+                    // 找到下一个未到达的选手
+                    var r = AppData.getNextFinishRider()
+                    r?.let{
+                        r.endTime = LocalDateTime.now()
+                        adapter.notifyDataSetChanged()
+                    }
+                }
             }
+
         }
 
 
@@ -80,11 +101,18 @@ class RaceAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<ItemViewHold
 class ItemViewHolder(val view: RaceListItemBinding): RecyclerView.ViewHolder(view.root){
     fun bind(rider: Rider){
         view.riderId.text = "#${rider.id}"
+        view.riderName.text = "${rider.name}"
         val df = DateTimeFormatter.ofPattern("HH:mm:ss.SSSS")
-        var timestr:String
-        if(rider.startTime == null) timestr = "未出发"
-        else timestr = df.format(rider.startTime)
-        view.riderTime.text = timestr
-        view.riderinfo.text = "${rider.name}"
+        // 根据运行模式切换默认字样
+        view.riderTime.text = when(AppData.appMode){
+            AppMode.Start -> {
+                if(rider.startTime == null) "未出发"
+                else df.format(rider.startTime)
+            }
+            AppMode.Finnish -> {
+                if(rider.endTime == null) "未到达"
+                else df.format(rider.endTime)
+            }
+        }
     }
 }

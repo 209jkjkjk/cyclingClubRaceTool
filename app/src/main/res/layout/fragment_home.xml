@@ -10,11 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/go"
+        app:layout_constraintBottom_toTopOf="@id/timeButton"
         />
 
     <Button
-        android:id="@+id/go"
+        android:id="@+id/timeButton"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:text="Ride On !"

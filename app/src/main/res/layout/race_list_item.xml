@@ -11,7 +11,7 @@
         android:text="123"
         />
     <TextView
-        android:id="@+id/riderinfo"
+        android:id="@+id/riderName"
         android:gravity="center_vertical"
         android:layout_width="0dp"
         android:layout_height="match_parent"
