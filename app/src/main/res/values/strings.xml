@@ -5,6 +5,6 @@
     <string name="title_tools">工具</string>
     <string name="edit">编辑</string>
     <string name="delete">删除</string>
-    <string name="startButtonText">Ride On!</string>
-    <string name="finishButtonText">Punch Line!</string>
+    <string name="startButtonText">Ride\nOn!</string>
+    <string name="finishButtonText">Punch\nLine!</string>
 </resources>

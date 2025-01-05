@@ -12,12 +12,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/timeButton"
         />
-
     <Button
         android:id="@+id/timeButton"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:text="Ride On !"
+        android:text="@string/startButtonText"
         android:textSize="66sp"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
