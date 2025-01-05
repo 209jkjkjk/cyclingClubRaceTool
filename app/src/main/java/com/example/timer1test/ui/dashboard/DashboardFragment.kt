@@ -34,11 +34,6 @@ class DashboardFragment : Fragment() {
         val root: View = binding.root
 
         // recyclerView
-        var riderList = appData.riderList
-        riderList.add(Rider(1,"2"))
-        riderList.add(Rider(2,"2"))
-        riderList.add(Rider(3,"2"))
-        riderList.add(Rider(4,"2"))
         val adapter = riderAdapter(appData.riderList)
         binding.riderRecyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.riderRecyclerView.adapter = adapter
@@ -48,8 +43,8 @@ class DashboardFragment : Fragment() {
         val inputName = binding.inputRiderName
         binding.addRider.setOnClickListener {
             if(inputId.text.isNotEmpty() && inputName.text.isNotEmpty()){
-                riderList.add(Rider(inputId.text.toString().toInt(), inputName.text.toString()))
-                adapter.notifyItemInserted(riderList.size-1)
+                appData.riderList.add(Rider(inputId.text.toString().toInt(), inputName.text.toString()))
+                adapter.notifyItemInserted(appData.riderList.size-1)
             }
         }
 
