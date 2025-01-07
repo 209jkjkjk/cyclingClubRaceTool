@@ -8,11 +8,13 @@
         android:id="@+id/riderId"
         android:gravity="center_vertical"
         android:layout_width="60dp"
+        android:hint="@string/number"
         android:layout_height="match_parent"/>
     <TextView
         android:id="@+id/riderName"
         android:gravity="center_vertical"
         android:layout_width="0dp"
+        android:hint="@string/name"
         android:layout_height="match_parent"
         android:layout_weight="1"/>
     <Button

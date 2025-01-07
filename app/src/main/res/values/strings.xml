@@ -10,4 +10,7 @@
     <string name="workMode">运行模式：</string>
     <string name="workMode_Start">起点</string>
     <string name="workMode_Finish">终点</string>
+    <string name="pleaseChooseRider">请选择骑手</string>
+    <string name="number">序号</string>
+    <string name="name">姓名</string>
 </resources>
