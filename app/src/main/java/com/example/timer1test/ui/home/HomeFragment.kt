@@ -1,5 +1,6 @@
 package com.example.timer1test.ui.home
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.timer1test.AppData
 import com.example.timer1test.R
 import com.example.timer1test.databinding.FragmentHomeBinding
-import com.example.timer1test.databinding.RaceListItemBinding
+import com.example.timer1test.databinding.RaceStartListItemBinding
 import com.example.timer1test.model.AppMode
 import com.example.timer1test.model.Rider
 import java.time.LocalDateTime
@@ -26,6 +27,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,34 +41,25 @@ class HomeFragment : Fragment() {
             AppMode.Finnish -> resources.getString(R.string.finishButtonText)
         }
 
-        // 注册recyclerView
-        val adapter = RaceAdapter(AppData.riderList)
-        binding.riderRecyclerView.layoutManager = LinearLayoutManager(this.context)
-        binding.riderRecyclerView.adapter = adapter
-
-        // 按钮功能
-        binding.timeButton.setOnClickListener {
-            when(AppData.appMode){
-                AppMode.Start -> {
+        // 根据工作模式加载不同的适配器
+        when(AppData.appMode){
+            AppMode.Start -> {
+                val adapter = RaceStartAdapter(AppData.riderList)
+                binding.riderRecyclerView.layoutManager = LinearLayoutManager(this.context)
+                binding.riderRecyclerView.adapter = adapter
+                // 按钮功能
+                binding.timeButton.setOnClickListener {
                     // 找到下一个未出发的选手
                     val r = AppData.getNextStartRider()
                     r?.let{
                         r.startTime = LocalDateTime.now()
                     }
-                }
-                AppMode.Finnish ->{
-                    // 找到下一个未到达的选手
-                    val r = AppData.getNextFinishRider()
-                    r?.let{
-                        r.endTime = LocalDateTime.now()
-                    }
+                    adapter.selectedPosition = -1
+                    adapter.notifyDataSetChanged()
                 }
             }
-            adapter.selectedPosition = -1
-            adapter.notifyDataSetChanged()
+            AppMode.Finnish -> resources.getString(R.string.finishButtonText)
         }
-
-
         return root
     }
 
@@ -78,12 +71,12 @@ class HomeFragment : Fragment() {
 
 
 // 下面是recyclerView代码
-class RaceAdapter(val riderList: List<Rider>) : RecyclerView.Adapter<RaceAdapter.ItemViewHolder>(){
+class RaceStartAdapter(val riderList: List<Rider>) : RecyclerView.Adapter<RaceStartAdapter.ItemViewHolder>(){
     var selectedPosition: Int = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding =
-            RaceListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            RaceStartListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(binding)
     }
 
@@ -104,7 +97,7 @@ class RaceAdapter(val riderList: List<Rider>) : RecyclerView.Adapter<RaceAdapter
     }
 
 
-    inner class ItemViewHolder(val view: RaceListItemBinding): RecyclerView.ViewHolder(view.root){
+    inner class ItemViewHolder(val view: RaceStartListItemBinding): RecyclerView.ViewHolder(view.root){
         init{
             itemView.setOnClickListener { // 获取当前点击的位置
                 val position = adapterPosition
