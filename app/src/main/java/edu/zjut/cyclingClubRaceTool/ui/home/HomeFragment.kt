@@ -66,7 +66,6 @@ class HomeFragment : Fragment() {
                 binding.riderRecyclerView.adapter = adapter
                 // 按钮功能
                 binding.timeButton.setOnClickListener {
-                    // 找到下一个未出发的选手
                     AppData.tempFinishList.add(Rider(AppData.tempFinishList.count()+1, ""))
                     AppData.tempFinishList.last().endTime = LocalDateTime.now()
                     adapter.notifyDataSetChanged()
