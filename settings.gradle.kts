@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "timer1test"
+rootProject.name = "cyclingClubRaceTool"
 include(":app")
  
