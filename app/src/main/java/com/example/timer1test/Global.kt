@@ -6,7 +6,7 @@ import com.example.timer1test.model.Rider
 // 全局数据
 object AppData {
     // 工作模式
-    var appMode = AppMode.Start
+    var appMode = AppMode.Finnish
     // 选手列表
     var riderList: MutableList<Rider> = mutableListOf()
     // 终点缓存列表
