@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timer1test.AppData
 import com.example.timer1test.R
 import com.example.timer1test.databinding.FragmentHomeBinding
+import com.example.timer1test.databinding.RaceFinishListItemBinding
 import com.example.timer1test.databinding.RaceStartListItemBinding
 import com.example.timer1test.model.AppMode
 import com.example.timer1test.model.Rider
@@ -58,7 +60,18 @@ class HomeFragment : Fragment() {
                     adapter.notifyDataSetChanged()
                 }
             }
-            AppMode.Finnish -> resources.getString(R.string.finishButtonText)
+            AppMode.Finnish -> {
+                val adapter = RaceFinishAdapter(AppData.tempFinishList)
+                binding.riderRecyclerView.layoutManager = LinearLayoutManager(this.context)
+                binding.riderRecyclerView.adapter = adapter
+                // 按钮功能
+                binding.timeButton.setOnClickListener {
+                    // 找到下一个未出发的选手
+                    AppData.tempFinishList.add(Rider(AppData.tempFinishList.count()+1, ""))
+                    AppData.tempFinishList.last().endTime = LocalDateTime.now()
+                    adapter.notifyDataSetChanged()
+                }
+            }
         }
         return root
     }
@@ -70,7 +83,7 @@ class HomeFragment : Fragment() {
 }
 
 
-// 下面是recyclerView代码
+// Start recyclerView
 class RaceStartAdapter(val riderList: List<Rider>) : RecyclerView.Adapter<RaceStartAdapter.ItemViewHolder>(){
     var selectedPosition: Int = -1
 
@@ -97,6 +110,7 @@ class RaceStartAdapter(val riderList: List<Rider>) : RecyclerView.Adapter<RaceSt
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     inner class ItemViewHolder(val view: RaceStartListItemBinding): RecyclerView.ViewHolder(view.root){
         init{
             itemView.setOnClickListener { // 获取当前点击的位置
@@ -113,6 +127,59 @@ class RaceStartAdapter(val riderList: List<Rider>) : RecyclerView.Adapter<RaceSt
                     selectedPosition = position
                     notifyDataSetChanged()
                 }
+            }
+
+        }
+
+        fun bind(rider: Rider){
+            view.riderId.text = rider.id.toString()
+            view.riderName.text = rider.name
+            val df = DateTimeFormatter.ofPattern("HH:mm:ss.SSSS")
+            // 根据运行模式切换默认字样
+            view.riderTime.text = if(rider.startTime == null) "未出发" else df.format(rider.startTime)
+        }
+
+
+    }
+}
+
+// Finish recyclerView
+class RaceFinishAdapter(val riderList: List<Rider>) : RecyclerView.Adapter<RaceFinishAdapter.ItemViewHolder>(){
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        val binding =
+            RaceFinishListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ItemViewHolder(binding)
+    }
+
+    override fun getItemCount(): Int {
+        return riderList.size
+    }
+
+
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        val item = riderList[position]
+        holder.bind(item)
+    }
+
+
+    inner class ItemViewHolder(val view: RaceFinishListItemBinding): RecyclerView.ViewHolder(view.root){
+        init{
+            itemView.setOnClickListener { // 获取当前点击的位置
+//                val position = adapterPosition
+//                // 如果已经有时间则不能选中，并删除之前的选中
+//                if((AppData.appMode == AppMode.Start && riderList[position].startTime != null) ||
+//                    (AppData.appMode == AppMode.Finnish && riderList[position].endTime != null)){
+//                    selectedPosition = -1
+//                    notifyDataSetChanged()
+//                    return@setOnClickListener
+//                }
+//                // 如果当前位置和之前选中的位置不同，则更新选中位置，并刷新RecyclerView
+//                else if (position != selectedPosition) {
+//                    selectedPosition = position
+//                    notifyDataSetChanged()
+//                }
+                Toast.makeText(itemView.context, "让我们说中文", Toast.LENGTH_LONG).show()
             }
 
         }
@@ -137,5 +204,4 @@ class RaceStartAdapter(val riderList: List<Rider>) : RecyclerView.Adapter<RaceSt
 
     }
 }
-
 

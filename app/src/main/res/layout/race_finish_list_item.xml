@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:paddingHorizontal="5dp">
+    <TextView
+        android:id="@+id/riderId"
+        android:gravity="center_vertical"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        />
+    <TextView
+        android:id="@+id/riderTime"
+        android:gravity="center_vertical|end"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="9dp"
+        android:fontFamily="@font/source_code_pro_blacklt"/>
+    <TextView
+        android:id="@+id/riderName"
+        android:gravity="center_vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+    <Button
+        android:id="@+id/edit"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/edit"/>
+
+</LinearLayout>

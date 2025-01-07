@@ -7,9 +7,12 @@ import com.example.timer1test.model.Rider
 object AppData {
     // 工作模式
     var appMode = AppMode.Start
-
+    // 选手列表
     var riderList: MutableList<Rider> = mutableListOf()
+    // 终点缓存列表
+    var tempFinishList: MutableList<Rider> = mutableListOf()
     init{
+        // debug数据
         for(i in 0.. 6){
             riderList.add(Rider(i, "选手$i"))
         }
