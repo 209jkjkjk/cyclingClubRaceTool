@@ -1,4 +1,4 @@
-package com.example.timer1test.model
+package edu.zjut.cyclingClubRaceTool.model
 
 // 工作模式
 enum class AppMode{

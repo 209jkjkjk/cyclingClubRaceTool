@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">timer1test</string>
+    <string name="app_name">骑行计时器</string>
     <string name="title_time">计时</string>
     <string name="title_riders">人员</string>
     <string name="title_tools">工具</string>

@@ -1,4 +1,4 @@
-package com.example.timer1test
+package edu.zjut.cyclingClubRaceTool
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

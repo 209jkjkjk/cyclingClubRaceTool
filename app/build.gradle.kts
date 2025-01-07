@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.timer1test"
+    namespace = "edu.zjut.cyclingClubRaceTool"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.timer1test"
+        applicationId = "edu.zjut.cyclingClubRaceTool"
         minSdk = 29
         targetSdk = 34
         versionCode = 1

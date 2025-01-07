@@ -10,13 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Timer1test"
+        android:theme="@style/Theme.cyclingClubRaceTool"
         tools:targetApi="31">
         <activity
-            android:name=".ui.sub.ChooseFinishRider"
+            android:name="edu.zjut.cyclingClubRaceTool.ui.sub.ChooseFinishRider"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="edu.zjut.cyclingClubRaceTool.MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

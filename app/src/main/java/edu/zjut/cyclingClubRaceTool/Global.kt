@@ -1,7 +1,7 @@
-package com.example.timer1test
+package edu.zjut.cyclingClubRaceTool
 
-import com.example.timer1test.model.AppMode
-import com.example.timer1test.model.Rider
+import edu.zjut.cyclingClubRaceTool.model.AppMode
+import edu.zjut.cyclingClubRaceTool.model.Rider
 
 // 全局数据
 object AppData {

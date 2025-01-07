@@ -1,4 +1,4 @@
-package com.example.timer1test
+package edu.zjut.cyclingClubRaceTool
 
 import org.junit.Test
 

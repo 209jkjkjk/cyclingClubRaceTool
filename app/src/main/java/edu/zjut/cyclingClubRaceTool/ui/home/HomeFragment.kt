@@ -1,4 +1,4 @@
-package com.example.timer1test.ui.home
+package edu.zjut.cyclingClubRaceTool.ui.home
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -10,13 +10,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.timer1test.AppData
-import com.example.timer1test.R
-import com.example.timer1test.databinding.FragmentHomeBinding
-import com.example.timer1test.databinding.RaceFinishListItemBinding
-import com.example.timer1test.databinding.RaceStartListItemBinding
-import com.example.timer1test.model.AppMode
-import com.example.timer1test.model.Rider
+import edu.zjut.cyclingClubRaceTool.AppData
+import edu.zjut.cyclingClubRaceTool.R
+import edu.zjut.cyclingClubRaceTool.databinding.FragmentHomeBinding
+import edu.zjut.cyclingClubRaceTool.databinding.RaceFinishListItemBinding
+import edu.zjut.cyclingClubRaceTool.databinding.RaceStartListItemBinding
+import edu.zjut.cyclingClubRaceTool.model.AppMode
+import edu.zjut.cyclingClubRaceTool.model.Rider
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

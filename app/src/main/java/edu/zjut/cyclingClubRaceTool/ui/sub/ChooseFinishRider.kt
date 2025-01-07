@@ -1,11 +1,11 @@
-package com.example.timer1test.ui.sub
+package edu.zjut.cyclingClubRaceTool.ui.sub
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.timer1test.R
+import edu.zjut.cyclingClubRaceTool.R
 
 class ChooseFinishRider : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

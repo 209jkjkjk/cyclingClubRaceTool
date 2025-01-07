@@ -1,14 +1,14 @@
-package com.example.timer1test.ui.tools
+package edu.zjut.cyclingClubRaceTool.ui.tools
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.timer1test.AppData
-import com.example.timer1test.R
-import com.example.timer1test.databinding.FragmentToolsBinding
-import com.example.timer1test.model.AppMode
+import edu.zjut.cyclingClubRaceTool.AppData
+import edu.zjut.cyclingClubRaceTool.R
+import edu.zjut.cyclingClubRaceTool.databinding.FragmentToolsBinding
+import edu.zjut.cyclingClubRaceTool.model.AppMode
 
 class ToolsFragment : Fragment() {
 

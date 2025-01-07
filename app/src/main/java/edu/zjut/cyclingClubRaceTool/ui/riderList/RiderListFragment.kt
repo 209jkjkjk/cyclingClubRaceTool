@@ -1,4 +1,4 @@
-package com.example.timer1test.ui.riderList
+package edu.zjut.cyclingClubRaceTool.ui.riderList
 
 import android.os.Bundle
 import android.util.Log
@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.timer1test.AppData
-import com.example.timer1test.model.Rider
-import com.example.timer1test.databinding.FragmentRiderListBinding
-import com.example.timer1test.databinding.RiderListItemBinding
+import edu.zjut.cyclingClubRaceTool.AppData
+import edu.zjut.cyclingClubRaceTool.databinding.FragmentRiderListBinding
+import edu.zjut.cyclingClubRaceTool.databinding.RiderListItemBinding
+import edu.zjut.cyclingClubRaceTool.model.Rider
 
 class RiderListFragment : Fragment() {
 

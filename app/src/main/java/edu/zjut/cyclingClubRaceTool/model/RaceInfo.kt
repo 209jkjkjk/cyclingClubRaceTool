@@ -1,4 +1,4 @@
-package com.example.timer1test.model
+package edu.zjut.cyclingClubRaceTool.model
 
 import java.time.LocalDateTime
 

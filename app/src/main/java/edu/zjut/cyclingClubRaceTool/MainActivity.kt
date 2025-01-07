@@ -1,4 +1,4 @@
-package com.example.timer1test
+package edu.zjut.cyclingClubRaceTool
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,7 +7,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.timer1test.databinding.ActivityMainBinding
+import edu.zjut.cyclingClubRaceTool.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
