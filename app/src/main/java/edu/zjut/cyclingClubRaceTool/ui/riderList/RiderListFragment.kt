@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.zjut.cyclingClubRaceTool.AppData
+import edu.zjut.cyclingClubRaceTool.AppData.getNotNullFilteredRiderList
 import edu.zjut.cyclingClubRaceTool.databinding.FragmentRiderListBinding
 import edu.zjut.cyclingClubRaceTool.databinding.RiderListItemBinding
 import edu.zjut.cyclingClubRaceTool.model.Rider
@@ -33,7 +34,7 @@ class RiderListFragment : Fragment() {
         val root: View = binding.root
 
         // recyclerView
-        val adapter = riderAdapter(AppData.riderList)
+        val adapter = riderAdapter()
         binding.riderRecyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.riderRecyclerView.adapter = adapter
 
@@ -61,7 +62,7 @@ class RiderListFragment : Fragment() {
 }
 
 // 下面是recyclerView代码
-class riderAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<riderAdapter.ItemViewHolder>(){
+class riderAdapter() : RecyclerView.Adapter<riderAdapter.ItemViewHolder>(){
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = RiderListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
@@ -76,11 +77,11 @@ class riderAdapter(val itemList: List<Rider>) : RecyclerView.Adapter<riderAdapte
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return getNotNullFilteredRiderList().size
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        var item = itemList[position]
+        val item = getNotNullFilteredRiderList()[position]
         holder.bind(item)
     }
     class ItemViewHolder(val view: RiderListItemBinding): RecyclerView.ViewHolder(view.root){
