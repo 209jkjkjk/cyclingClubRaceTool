@@ -29,6 +29,7 @@ class ToolsFragment : Fragment() {
 
         // 同步开关状态，由于本项目没有用数据绑定，需要手动实现
         binding.workmodeSwitch.isChecked = AppData.appMode == AppMode.Finnish
+        binding.workmodeString.text = if (binding.workmodeSwitch.isChecked) resources.getString(R.string.workMode_Finish) else resources.getString(R.string.workMode_Start)
 
         binding.workmodeSwitch.setOnCheckedChangeListener{ _, isChecked ->
             AppData.appMode = if (isChecked) AppMode.Finnish else AppMode.Start

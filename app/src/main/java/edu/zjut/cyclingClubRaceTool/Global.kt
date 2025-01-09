@@ -9,8 +9,6 @@ object AppData {
     var appMode = AppMode.Finnish
     // 选手列表
     var riderList: MutableList<Rider> = mutableListOf()
-    // 终点缓存列表
-    var tempFinishList: MutableList<Rider> = mutableListOf()
     init{
         // debug数据
         for(i in 0.. 6){
@@ -52,5 +50,17 @@ object AppData {
         } catch (e:NoSuchElementException){
             null
         }
+    }
+
+    fun getFinishFilteredRiderList(): List<Rider>{
+        return riderList.filter{it.endTime != null}
+    }
+
+    fun getStartFilteredRiderList(): List<Rider>{
+        return riderList.filter{it.endTime == null}
+    }
+
+    fun getNotNullFilteredRiderList(): List<Rider>{
+        return riderList.filter{it.id != null}
     }
 }

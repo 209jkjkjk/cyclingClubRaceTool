@@ -13,4 +13,5 @@
     <string name="pleaseChooseRider">请选择骑手</string>
     <string name="number">序号</string>
     <string name="name">姓名</string>
+    <string name="confirm">确定</string>
 </resources>
