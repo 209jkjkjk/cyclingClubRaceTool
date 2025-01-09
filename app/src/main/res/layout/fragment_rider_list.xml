@@ -14,27 +14,53 @@
         app:layout_constraintBottom_toTopOf="@id/editArea"
         />
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/editArea"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <Button
+            android:layout_marginHorizontal="5dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/inputRiders"
+            android:text="@string/input"/>
+        <Button
+            android:layout_marginHorizontal="5dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/outputRiders"
+            android:text="@string/output"/>
+
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/editArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent">
         <EditText
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:id="@+id/inputRiderId"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:hint="序号"/>
+            android:hint="@string/number"
+            android:importantForAutofill="no"
+            android:inputType="number" />
         <EditText
             android:id="@+id/inputRiderName"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:hint="姓名"/>
+            android:hint="@string/name"
+            android:importantForAutofill="no"
+            android:inputType="text" />
         <Button
             android:id="@+id/addRider"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="添加"/>
+            android:text="@string/add"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

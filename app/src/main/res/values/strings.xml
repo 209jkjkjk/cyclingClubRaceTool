@@ -6,7 +6,7 @@
     <string name="edit">编辑</string>
     <string name="delete">删除</string>
     <string name="startButtonText">Ride\nOn!</string>
-    <string name="finishButtonText">Punch\nLine!</string>
+    <string name="finishButtonText">Ride\nOff!</string>
     <string name="workMode">运行模式：</string>
     <string name="workMode_Start">起点</string>
     <string name="workMode_Finish">终点</string>
@@ -15,4 +15,7 @@
     <string name="name">姓名</string>
     <string name="confirm">确定</string>
     <string name="clearData">清空数据</string>
+    <string name="add">添加</string>
+    <string name="input">导入</string>
+    <string name="output">导出</string>
 </resources>
