@@ -7,6 +7,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import edu.zjut.cyclingClubRaceTool.AppData.loadDataFromFile
+import edu.zjut.cyclingClubRaceTool.AppData.saveDataToFile
 import edu.zjut.cyclingClubRaceTool.databinding.ActivityMainBinding
 
 
@@ -16,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadDataFromFile(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -32,5 +35,10 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        saveDataToFile(this)
     }
 }

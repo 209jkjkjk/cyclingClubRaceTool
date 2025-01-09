@@ -25,6 +25,7 @@ class RiderListFragment : Fragment() {
     private val binding get() = _binding!!
 
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,14 +44,24 @@ class RiderListFragment : Fragment() {
         val inputName = binding.inputRiderName
         binding.addRider.setOnClickListener {
             val id = inputId.text.toString().toIntOrNull()
-            if (id == null)
-                Toast.makeText(context, "id必须为数字", Toast.LENGTH_LONG).show()
+            Log.d("增加人员", id.toString())
+            if (id == null) {
+                Toast.makeText(context, "id必须为整数", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            if(inputId.text.isNotEmpty() && inputName.text.isNotEmpty()){
-                AppData.riderList.add(Rider(inputId.text.toString().toInt(), inputName.text.toString()))
-                adapter.notifyItemInserted(AppData.riderList.size-1)
+            if (inputId.text.isNotEmpty() && inputName.text.isNotEmpty()) {
+                AppData.riderList.add(
+                    Rider(
+                        inputId.text.toString().toInt(),
+                        inputName.text.toString()
+                    )
+                )
+                adapter.notifyDataSetChanged()
+                // 清空输入
+                inputId.text.clear()
+                inputName.text.clear()
             }
+        }
 
         return root
     }

@@ -14,4 +14,5 @@
     <string name="number">序号</string>
     <string name="name">姓名</string>
     <string name="confirm">确定</string>
+    <string name="clearData">清空数据</string>
 </resources>
