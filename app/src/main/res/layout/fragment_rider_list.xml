@@ -24,14 +24,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/inputRiders"
+            android:id="@+id/inputRidersButton"
             android:text="@string/input"/>
         <Button
             android:layout_marginHorizontal="5dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/outputRiders"
+            android:id="@+id/outputRidersButton"
             android:text="@string/output"/>
 
     </LinearLayout>
