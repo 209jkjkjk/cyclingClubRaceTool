@@ -6,7 +6,6 @@ import edu.zjut.cyclingClubRaceTool.model.AppMode
 import edu.zjut.cyclingClubRaceTool.model.Rider
 import java.io.BufferedReader
 import java.io.BufferedWriter
-import java.io.File
 import java.io.IOException
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
@@ -30,7 +29,6 @@ object AppData {
         }
         return null
     }
-
 
     // 找到下一个没有出发的选手
     fun getNextStartRider(): Rider?{

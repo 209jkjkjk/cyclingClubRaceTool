@@ -16,6 +16,9 @@
             android:name="edu.zjut.cyclingClubRaceTool.ui.sub.ChooseFinishRider"
             android:exported="false" />
         <activity
+            android:name="edu.zjut.cyclingClubRaceTool.ui.sub.InputRiders"
+            android:exported="false" />
+        <activity
             android:name="edu.zjut.cyclingClubRaceTool.MainActivity"
             android:exported="true"
             android:label="@string/app_name">

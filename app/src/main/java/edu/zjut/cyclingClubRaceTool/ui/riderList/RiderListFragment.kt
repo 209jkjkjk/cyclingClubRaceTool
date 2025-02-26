@@ -1,12 +1,15 @@
 package edu.zjut.cyclingClubRaceTool.ui.riderList
 
 import android.annotation.SuppressLint
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +18,7 @@ import edu.zjut.cyclingClubRaceTool.AppData.getNotNullFilteredRiderList
 import edu.zjut.cyclingClubRaceTool.databinding.FragmentRiderListBinding
 import edu.zjut.cyclingClubRaceTool.databinding.RiderListItemBinding
 import edu.zjut.cyclingClubRaceTool.model.Rider
+import edu.zjut.cyclingClubRaceTool.ui.sub.InputRiders
 
 class RiderListFragment : Fragment() {
 
@@ -24,6 +28,15 @@ class RiderListFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var adapter:riderAdapter
+
+    // 接收第二个Activity返回的回调
+    @SuppressLint("NotifyDataSetChanged")
+    private val requestDataLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            adapter.notifyDataSetChanged()
+        }
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -35,7 +48,7 @@ class RiderListFragment : Fragment() {
         val root: View = binding.root
 
         // recyclerView
-        val adapter = riderAdapter()
+        adapter = riderAdapter()
         binding.riderRecyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.riderRecyclerView.adapter = adapter
 
@@ -44,7 +57,7 @@ class RiderListFragment : Fragment() {
         val inputName = binding.inputRiderName
         binding.addRider.setOnClickListener {
             val id = inputId.text.toString().toIntOrNull()
-            Log.d("增加人员", id.toString())
+            Log.d("zjut", id.toString())
             if (id == null) {
                 Toast.makeText(context, "id必须为整数", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
@@ -61,6 +74,11 @@ class RiderListFragment : Fragment() {
                 inputId.text.clear()
                 inputName.text.clear()
             }
+        }
+
+        binding.inputRidersButton.setOnClickListener {
+            val intent =  Intent(context, InputRiders::class.java)
+            requestDataLauncher.launch(intent)
         }
 
         return root
