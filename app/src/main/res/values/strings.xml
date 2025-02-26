@@ -18,5 +18,5 @@
     <string name="add">添加</string>
     <string name="input">导入</string>
     <string name="output">导出</string>
-    <string name="inputRidersHint">1,选手1\n2,选手2\n3,选手3\n...</string>
+    <string name="inputRidersHint">1,选手1\n2,选手2\n3,选手3\n…</string>
 </resources>
