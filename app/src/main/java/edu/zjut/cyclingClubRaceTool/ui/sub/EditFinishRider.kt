@@ -28,7 +28,7 @@ class EditFinishRider : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             result.data?.let{
                 val exchangeRider = it.getSerializableExtra("exchangeRider") as Rider
-                objectRider.startTime = exchangeRider.startTime
+                objectRider.endTime = exchangeRider.endTime
                 setResult(RESULT_OK)
                 finish()
             }
@@ -46,14 +46,14 @@ class EditFinishRider : AppCompatActivity() {
 
         // 复制
         binding.cloneButton.setOnClickListener {
-            val intent =  Intent(this, ChooseCloneStartRider::class.java)
+            val intent =  Intent(this, ChooseCloneFinishRider::class.java)
             intent.putExtra("tempRider", objectRider)
             cloneLauncher.launch(intent)
         }
 
         // 交换
         binding.exchangeButton.setOnClickListener {
-            val intent =  Intent(this, ChooseExchangeStartRider::class.java)
+            val intent =  Intent(this, ChooseExchangeFinishRider::class.java)
             intent.putExtra("tempRider", objectRider)
             exchangeLauncher.launch(intent)
         }

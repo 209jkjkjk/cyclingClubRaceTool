@@ -12,7 +12,7 @@ import edu.zjut.cyclingClubRaceTool.databinding.ActivityChooseRiderBinding
 import edu.zjut.cyclingClubRaceTool.databinding.ChooseListItemBinding
 import edu.zjut.cyclingClubRaceTool.model.Rider
 
-class ChooseCloneStartRider : AppCompatActivity() {
+class ChooseCloneFinishRider : AppCompatActivity() {
     lateinit var tempRider: Rider
 
     @Suppress("DEPRECATION")
@@ -36,7 +36,7 @@ class ChooseCloneStartRider : AppCompatActivity() {
 
             binding.confirmButton.setOnClickListener{
                 val resultRider = AppData.getNotNullFilteredRiderList()[holder.adapterPosition]
-                resultRider.startTime = tempRider.startTime
+                resultRider.endTime = tempRider.endTime
                 setResult(RESULT_OK)
                 finish()
             }
