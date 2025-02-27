@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.zjut.cyclingClubRaceTool.AppData
 import edu.zjut.cyclingClubRaceTool.AppData.getStartFilteredRiderList
-import edu.zjut.cyclingClubRaceTool.databinding.ActivityChooseFinishRiderBinding
+import edu.zjut.cyclingClubRaceTool.databinding.ActivityChooseRiderBinding
 import edu.zjut.cyclingClubRaceTool.databinding.ChooseListItemBinding
 import edu.zjut.cyclingClubRaceTool.model.Rider
 
@@ -19,7 +19,7 @@ class ChooseFinishRider : AppCompatActivity() {
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityChooseFinishRiderBinding.inflate(layoutInflater)
+        val binding = ActivityChooseRiderBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // 获取传送而来的数据
         tempRider = intent.getSerializableExtra("tempRider") as Rider

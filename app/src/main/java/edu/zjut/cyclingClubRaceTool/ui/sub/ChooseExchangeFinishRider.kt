@@ -13,7 +13,7 @@ import edu.zjut.cyclingClubRaceTool.databinding.ActivityChooseRiderBinding
 import edu.zjut.cyclingClubRaceTool.databinding.ChooseListItemBinding
 import edu.zjut.cyclingClubRaceTool.model.Rider
 
-class ChooseExchangeStartRider : AppCompatActivity() {
+class ChooseExchangeFinishRider : AppCompatActivity() {
     lateinit var tempRider: Rider
 
     @Suppress("DEPRECATION")
