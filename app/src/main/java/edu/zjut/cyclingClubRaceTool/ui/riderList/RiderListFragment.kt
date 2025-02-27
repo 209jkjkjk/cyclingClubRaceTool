@@ -19,6 +19,7 @@ import edu.zjut.cyclingClubRaceTool.databinding.FragmentRiderListBinding
 import edu.zjut.cyclingClubRaceTool.databinding.RiderListItemBinding
 import edu.zjut.cyclingClubRaceTool.model.Rider
 import edu.zjut.cyclingClubRaceTool.ui.sub.InputRiders
+import edu.zjut.cyclingClubRaceTool.ui.sub.OutputRiders
 
 class RiderListFragment : Fragment() {
 
@@ -76,9 +77,16 @@ class RiderListFragment : Fragment() {
             }
         }
 
+        // 导入
         binding.inputRidersButton.setOnClickListener {
             val intent =  Intent(context, InputRiders::class.java)
             requestDataLauncher.launch(intent)
+        }
+
+        // 导出
+        binding.outputRidersButton.setOnClickListener {
+            val intent = Intent(context, OutputRiders::class.java)
+            startActivity(intent)
         }
 
         return root
