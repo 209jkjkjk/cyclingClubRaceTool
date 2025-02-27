@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <Button
+        android:id="@+id/cloneButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/copyScoreToOtherRider"
+        android:paddingHorizontal="2dp"
+        android:textSize="30sp"/>
+
+    <Button
+        android:id="@+id/exchangeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/exchangeWithOtherRider"
+        android:paddingHorizontal="2dp"
+        android:textSize="30sp"/>
+
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/deleteScore_cannotUndo"
+        android:paddingHorizontal="2dp"
+        android:textSize="30sp"/>
+
+</LinearLayout>

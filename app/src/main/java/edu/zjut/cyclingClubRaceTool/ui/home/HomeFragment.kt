@@ -22,6 +22,7 @@ import edu.zjut.cyclingClubRaceTool.databinding.RaceStartListItemBinding
 import edu.zjut.cyclingClubRaceTool.model.AppMode
 import edu.zjut.cyclingClubRaceTool.model.Rider
 import edu.zjut.cyclingClubRaceTool.ui.sub.ChooseFinishRider
+import edu.zjut.cyclingClubRaceTool.ui.sub.EditFinishRider
 import edu.zjut.cyclingClubRaceTool.ui.sub.EditStartRider
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -43,6 +44,7 @@ class HomeFragment : Fragment() {
         // 响应选择
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             startAdapter?.notifyDataSetChanged()
+            finishAdapter?.notifyDataSetChanged()
         }
     }
 
@@ -175,9 +177,15 @@ class HomeFragment : Fragment() {
     inner class RaceFinishAdapter() : RecyclerView.Adapter<RaceFinishAdapter.ItemViewHolder>(){
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-            val binding =
-                RaceFinishListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return ItemViewHolder(binding)
+            val binding = RaceFinishListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            val holder = ItemViewHolder(binding)
+            // 编辑按钮
+            binding.editButton.setOnClickListener {
+                val intent =  Intent(context, EditFinishRider::class.java)
+                intent.putExtra("objectRiderIndex", holder.adapterPosition)
+                editRiderLauncher.launch(intent)
+            }
+            return holder
         }
 
         override fun getItemCount(): Int {
