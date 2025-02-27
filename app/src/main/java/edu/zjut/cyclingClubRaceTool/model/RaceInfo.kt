@@ -11,4 +11,9 @@ data class Rider(var id: Int?, var name: String): Serializable{
         this.startTime = startTime
         this.endTime = endTime
     }
+
+    constructor(rider: Rider):this(rider.id, rider.name){
+        this.startTime = rider.startTime
+        this.endTime = rider.endTime
+    }
 }
