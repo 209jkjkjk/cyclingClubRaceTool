@@ -39,6 +39,8 @@ class ToolsFragment : Fragment() {
         binding.workmodeSwitch.setOnCheckedChangeListener{ _, isChecked ->
             AppData.appMode = if (isChecked) AppMode.Finnish else AppMode.Start
             binding.workmodeString.text = if (isChecked) resources.getString(R.string.workMode_Finish) else resources.getString(R.string.workMode_Start)
+            // 保存
+            AppData.saveDataToFile(requireContext())
         }
 
         // 删除数据
