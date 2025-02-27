@@ -105,7 +105,7 @@ class RiderListFragment : Fragment() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
             val binding = RiderListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
             val holder = ItemViewHolder(binding)
-            binding.delete.setOnClickListener{
+            binding.deleteButton.setOnClickListener{
                 val rider = AppData.riderList[holder.adapterPosition]
                 if(rider.startTime != null || rider.endTime != null){
                     Toast.makeText(parent.context, "该骑手存在成绩，删除失败", Toast.LENGTH_LONG).show()
