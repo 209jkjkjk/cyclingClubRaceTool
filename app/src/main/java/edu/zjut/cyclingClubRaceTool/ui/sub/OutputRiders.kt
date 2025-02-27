@@ -2,7 +2,6 @@ package edu.zjut.cyclingClubRaceTool.ui.sub
 
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +19,7 @@ class OutputRiders : AppCompatActivity() {
         // 以csv格式输出人员名单
         val sb = StringBuilder()
         for(rider in AppData.riderList){
-            // 跳过空名或空ID的rider
+            // 跳过空名或空id的rider
             if(rider.id == null || rider.name.isEmpty()) continue
             sb.append("${rider.id},${rider.name}\n")
         }
@@ -36,7 +35,7 @@ class OutputRiders : AppCompatActivity() {
             val mClipData = ClipData.newPlainText("", binding.outputRiderEditText.text)
             // 将ClipData内容放到系统剪贴板里。
             cm.setPrimaryClip(mClipData)
-            
+
             Toast.makeText(this, "已复制文本到剪贴板", Toast.LENGTH_SHORT).show()
         }
     }
