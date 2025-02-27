@@ -23,4 +23,5 @@
     <string name="riderId"># %1$s</string>
     <string name="exchangeWithOtherRider">与其它骑手交换成绩</string>
     <string name="deleteScore_cannotUndo">清除此成绩(无法撤销)</string>
+    <string name="copyScoreToOtherRider">复制成绩到其它骑手</string>
 </resources>

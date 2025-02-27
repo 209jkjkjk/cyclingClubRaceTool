@@ -14,6 +14,14 @@ import edu.zjut.cyclingClubRaceTool.model.Rider
 class EditStartRider : AppCompatActivity() {
     lateinit var objectRider: Rider
 
+    private val cloneLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        // 响应选择
+        if (result.resultCode == RESULT_OK) {
+            setResult(RESULT_OK)
+            finish()
+        }
+    }
+
     @Suppress("DEPRECATION")
     private val exchangeLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         // 响应选择
@@ -37,6 +45,11 @@ class EditStartRider : AppCompatActivity() {
         Log.d("zjut", "编辑的rider $objectRider")
 
         // 复制
+        binding.cloneButton.setOnClickListener {
+            val intent =  Intent(this, ChooseCloneStartRider::class.java)
+            intent.putExtra("tempRider", objectRider)
+            cloneLauncher.launch(intent)
+        }
 
         // 交换
         binding.exchangeButton.setOnClickListener {
