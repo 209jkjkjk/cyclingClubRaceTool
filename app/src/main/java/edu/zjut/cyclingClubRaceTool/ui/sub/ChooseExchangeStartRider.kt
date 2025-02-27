@@ -1,6 +1,7 @@
 package edu.zjut.cyclingClubRaceTool.ui.sub
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,12 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.zjut.cyclingClubRaceTool.AppData
-import edu.zjut.cyclingClubRaceTool.AppData.getStartFilteredRiderList
 import edu.zjut.cyclingClubRaceTool.databinding.ActivityChooseFinishRiderBinding
 import edu.zjut.cyclingClubRaceTool.databinding.ChooseListItemBinding
 import edu.zjut.cyclingClubRaceTool.model.Rider
 
-class ChooseFinishRider : AppCompatActivity() {
+class ChooseExchangeStartRider : AppCompatActivity() {
     lateinit var tempRider: Rider
 
     @Suppress("DEPRECATION")
@@ -34,9 +34,12 @@ class ChooseFinishRider : AppCompatActivity() {
             val binding =
                 ChooseListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             val holder = ItemViewHolder(binding)
+
             binding.confirmButton.setOnClickListener{
-                getStartFilteredRiderList()[holder.adapterPosition].endTime = tempRider.endTime
-                AppData.riderList.remove(tempRider)
+                val intent = Intent()
+                val resultRider = AppData.getNotNullFilteredRiderList()[holder.adapterPosition]
+                intent.putExtra("exchangeRider", Rider(resultRider))    // 注意要先复制，再修改
+                resultRider.startTime = tempRider.startTime
                 setResult(RESULT_OK, intent)
                 finish()
             }
@@ -44,11 +47,11 @@ class ChooseFinishRider : AppCompatActivity() {
         }
 
         override fun getItemCount(): Int {
-            return getStartFilteredRiderList().size
+            return AppData.getNotNullFilteredRiderList().size
         }
 
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-            val item = getStartFilteredRiderList()[position]
+            val item = AppData.getNotNullFilteredRiderList()[position]
             holder.bind(item)
         }
 
