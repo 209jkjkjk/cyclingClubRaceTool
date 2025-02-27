@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.zjut.cyclingClubRaceTool.AppData
 import edu.zjut.cyclingClubRaceTool.AppData.getNotNullFilteredRiderList
+import edu.zjut.cyclingClubRaceTool.R
 import edu.zjut.cyclingClubRaceTool.databinding.FragmentRiderListBinding
 import edu.zjut.cyclingClubRaceTool.databinding.RiderListItemBinding
 import edu.zjut.cyclingClubRaceTool.model.Rider
@@ -96,38 +97,43 @@ class RiderListFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}
 
-// 下面是recyclerView代码
-class riderAdapter() : RecyclerView.Adapter<riderAdapter.ItemViewHolder>(){
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding = RiderListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
-        val holder = ItemViewHolder(binding)
-        binding.delete.setOnClickListener{
-            AppData.riderList.removeAt(holder.adapterPosition)
+
+    // 下面是recyclerView代码
+    class riderAdapter() : RecyclerView.Adapter<riderAdapter.ItemViewHolder>(){
+        @SuppressLint("NotifyDataSetChanged")
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+            val binding = RiderListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
+            val holder = ItemViewHolder(binding)
+            binding.delete.setOnClickListener{
+                val rider = AppData.riderList[holder.adapterPosition]
+                if(rider.startTime != null || rider.endTime != null){
+                    Toast.makeText(parent.context, "该骑手存在成绩，删除失败", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+                AppData.riderList.removeAt(holder.adapterPosition)
 //            notifyItemRemoved(holder.adapterPosition)
 //            notifyItemRangeChanged(holder.adapterPosition, itemCount)
-              notifyDataSetChanged()
+                notifyDataSetChanged()
+            }
+            return holder
         }
-        return holder
-    }
 
-    override fun getItemCount(): Int {
-        return getNotNullFilteredRiderList().size
-    }
+        override fun getItemCount(): Int {
+            return getNotNullFilteredRiderList().size
+        }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val item = getNotNullFilteredRiderList()[position]
-        holder.bind(item)
-    }
-    class ItemViewHolder(val view: RiderListItemBinding): RecyclerView.ViewHolder(view.root){
-        fun bind(rider: Rider){
-            view.riderId.text = "#${rider.id}"
-            view.riderName.text = rider.name
+        override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+            val item = getNotNullFilteredRiderList()[position]
+            holder.bind(item)
+        }
+        class ItemViewHolder(val view: RiderListItemBinding): RecyclerView.ViewHolder(view.root){
+            fun bind(rider: Rider){
+                view.riderId.text = itemView.context.getString(R.string.riderId, rider.id.toString())
+                view.riderName.text = rider.name
+            }
         }
     }
-
 }
 
 
