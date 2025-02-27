@@ -8,7 +8,7 @@
     tools:context="edu.zjut.cyclingClubRaceTool.ui.sub.ChooseFinishRider">
 
     <EditText
-        android:id="@+id/inputRiderTextView"
+        android:id="@+id/inputRiderEditText"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:hint="@string/inputRidersHint"

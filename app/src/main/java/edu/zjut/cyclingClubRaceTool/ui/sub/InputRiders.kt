@@ -17,7 +17,7 @@ class InputRiders : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.confirmButton.setOnClickListener {
-            val text = binding.inputRiderTextView.text
+            val text = binding.inputRiderEditText.text
             val tempList: MutableList<Rider> = mutableListOf()
 
             try{
