@@ -21,4 +21,6 @@
     <string name="inputRidersHint">1,选手1\n2,选手2\n3,选手3\n…</string>
     <string name="copyToClipboard">复制到剪贴板</string>
     <string name="riderId"># %1$s</string>
+    <string name="exchangeWithOtherRider">与其它骑手交换成绩</string>
+    <string name="deleteScore_cannotUndo">清除此成绩(无法撤销)</string>
 </resources>

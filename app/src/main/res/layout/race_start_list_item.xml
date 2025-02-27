@@ -24,7 +24,7 @@
         android:layout_marginEnd="9dp"
         android:fontFamily="@font/source_code_pro_blacklt"/>
     <Button
-        android:id="@+id/edit"
+        android:id="@+id/editButton"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="@string/edit"/>

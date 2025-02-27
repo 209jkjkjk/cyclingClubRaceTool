@@ -22,17 +22,27 @@ import edu.zjut.cyclingClubRaceTool.databinding.RaceStartListItemBinding
 import edu.zjut.cyclingClubRaceTool.model.AppMode
 import edu.zjut.cyclingClubRaceTool.model.Rider
 import edu.zjut.cyclingClubRaceTool.ui.sub.ChooseFinishRider
+import edu.zjut.cyclingClubRaceTool.ui.sub.EditStartRider
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
 class HomeFragment : Fragment() {
-    var finishAdapter: RaceFinishAdapter? = null
+    private var finishAdapter: RaceFinishAdapter? = null
+    private var startAdapter: RaceStartAdapter? = null
     @SuppressLint("NotifyDataSetChanged")
-    private val requestDataLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    private val chooseRiderLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         // 响应选择
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             finishAdapter?.notifyDataSetChanged()
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private val editRiderLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        // 响应选择
+        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+            startAdapter?.notifyDataSetChanged()
         }
     }
 
@@ -60,9 +70,9 @@ class HomeFragment : Fragment() {
         // 根据工作模式加载不同的适配器
         when(AppData.appMode){
             AppMode.Start -> {
-                val adapter = RaceStartAdapter()
+                startAdapter = RaceStartAdapter()
                 binding.riderRecyclerView.layoutManager = LinearLayoutManager(this.context)
-                binding.riderRecyclerView.adapter = adapter
+                binding.riderRecyclerView.adapter = startAdapter
                 // 按钮功能
                 binding.timeButton.setOnClickListener {
                     // 找到下一个未出发的选手
@@ -70,8 +80,8 @@ class HomeFragment : Fragment() {
                     r?.let{
                         r.startTime = LocalDateTime.now()
                     }
-                    adapter.selectedPosition = -1
-                    adapter.notifyDataSetChanged()
+                    startAdapter!!.selectedPosition = -1
+                    startAdapter!!.notifyDataSetChanged()
                 }
             }
             AppMode.Finnish -> {
@@ -101,9 +111,16 @@ class HomeFragment : Fragment() {
         var selectedPosition: Int = -1
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-            val binding =
-                RaceStartListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return ItemViewHolder(binding)
+            val binding = RaceStartListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            val holder = ItemViewHolder(binding)
+            // 编辑按钮
+            binding.editButton.setOnClickListener {
+                val intent =  Intent(context, EditStartRider::class.java)
+                intent.putExtra("objectRiderIndex", holder.adapterPosition)
+                editRiderLauncher.launch(intent)
+            }
+
+            return holder
         }
 
         override fun getItemCount(): Int {
@@ -116,16 +133,17 @@ class HomeFragment : Fragment() {
             holder.bind(item)
             if (selectedPosition == position) {
                 AppData.nextRider = getNotNullFilteredRiderList()[position]
-                holder.itemView.setBackgroundColor(Color.parseColor("#FFA1C3"));
+                holder.itemView.setBackgroundColor(Color.parseColor("#FFA1C3"))
             } else {
-                holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"))
             }
         }
 
 
         @SuppressLint("NotifyDataSetChanged")
-        inner class ItemViewHolder(val view: RaceStartListItemBinding): RecyclerView.ViewHolder(view.root){
+        inner class ItemViewHolder(private val view: RaceStartListItemBinding): RecyclerView.ViewHolder(view.root){
             init{
+                // 选择出发的骑手
                 itemView.setOnClickListener { // 获取当前点击的位置
                     val position = adapterPosition
                     // 如果已经有时间则不能选中，并删除之前的选中
@@ -174,7 +192,7 @@ class HomeFragment : Fragment() {
 
 
         @SuppressLint("NotifyDataSetChanged")
-        inner class ItemViewHolder(val view: RaceFinishListItemBinding): RecyclerView.ViewHolder(view.root){
+        inner class ItemViewHolder(private val view: RaceFinishListItemBinding): RecyclerView.ViewHolder(view.root){
             init{
                 itemView.setOnClickListener { // 获取当前点击的位置
                     val intent =  Intent(itemView.context, ChooseFinishRider::class.java)
@@ -182,7 +200,7 @@ class HomeFragment : Fragment() {
                     // 只处理id为null的
                     if(rider.id == null){
                         intent.putExtra("tempRider", rider)
-                        requestDataLauncher.launch(intent)
+                        chooseRiderLauncher.launch(intent)
                     }
                 }
             }

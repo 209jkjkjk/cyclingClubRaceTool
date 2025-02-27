@@ -62,6 +62,7 @@ object AppData {
         return riderList.filter{it.endTime == null}
     }
 
+    // 获得id不为null的骑手列表
     fun getNotNullFilteredRiderList(): List<Rider>{
         return riderList.filter{it.id != null}
     }
@@ -98,6 +99,7 @@ object AppData {
         try{
             val input = context.openFileInput("data")
             val reader = BufferedReader(InputStreamReader(input))
+            Log.d("zjut", "开始读取文件")
             reader.use{
                 val mode = it.readLine()
                 appMode = if(mode == "0") AppMode.Start else AppMode.Finnish
@@ -113,6 +115,7 @@ object AppData {
                     riderList.add(Rider(id, name, startTime, endTime))
                 }
             }
+            Log.d("zjut", "数量${riderList.count()}")
         }catch (e :IOException){
             e.printStackTrace()
         }

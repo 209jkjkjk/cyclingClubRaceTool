@@ -22,9 +22,13 @@
             android:name="edu.zjut.cyclingClubRaceTool.ui.sub.OutputRiders"
             android:exported="false" />
         <activity
+            android:name="edu.zjut.cyclingClubRaceTool.ui.sub.EditStartRider"
+            android:exported="false" />
+        <activity
             android:name="edu.zjut.cyclingClubRaceTool.MainActivity"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            tools:ignore="RedundantLabel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
