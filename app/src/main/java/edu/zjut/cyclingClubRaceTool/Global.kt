@@ -120,7 +120,7 @@ object AppData {
                     val timeBonusStr = it.readLine()
                     val timeBonus:Duration? = if(timeBonusStr == "null") null else Duration.ofSeconds(timeBonusStr.toLong())
                     val noteStr = it.readLine()
-                    val note = if(startTimeStr == "null") null else noteStr
+                    val note = if(noteStr == "null") null else noteStr
                     riderList.add(Rider(id, name, startTime, endTime, timeBonus, note))
                 }
             }

@@ -114,17 +114,21 @@ class RiderListFragment : Fragment() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
             val binding = RiderListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
             val holder = ItemViewHolder(binding)
-            // 删除已按钮
+            // 删除按钮
             binding.deleteButton.setOnClickListener{
+                Toast.makeText(parent.context, "长按删除", Toast.LENGTH_SHORT).show()
+            }
+            binding.deleteButton.setOnLongClickListener{
                 val rider = AppData.riderList[holder.adapterPosition]
                 if(rider.startTime != null || rider.finishTime != null){
                     Toast.makeText(parent.context, "该骑手存在成绩，删除失败", Toast.LENGTH_LONG).show()
-                    return@setOnClickListener
+                    return@setOnLongClickListener false
                 }
                 AppData.riderList.removeAt(holder.adapterPosition)
 //            notifyItemRemoved(holder.adapterPosition)
 //            notifyItemRangeChanged(holder.adapterPosition, itemCount)
                 notifyDataSetChanged()
+                return@setOnLongClickListener true
             }
             // 编辑按钮
             binding.editButton.setOnClickListener {
