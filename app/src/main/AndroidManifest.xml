@@ -40,6 +40,9 @@
             android:name="edu.zjut.cyclingClubRaceTool.ui.sub.ChooseCloneFinishRider"
             android:exported="false" />
         <activity
+            android:name="edu.zjut.cyclingClubRaceTool.ui.sub.EditRider"
+            android:exported="false" />
+        <activity
             android:name="edu.zjut.cyclingClubRaceTool.MainActivity"
             android:exported="true"
             android:label="@string/app_name"

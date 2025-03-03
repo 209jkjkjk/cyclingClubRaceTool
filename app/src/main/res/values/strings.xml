@@ -24,4 +24,10 @@
     <string name="exchangeWithOtherRider">与其它骑手交换成绩</string>
     <string name="deleteScore_cannotUndo">清除此成绩(无法撤销)</string>
     <string name="copyScoreToOtherRider">复制成绩到其它骑手</string>
+    <string name="id冒号">ID:</string>
+    <string name="name冒号">姓名:</string>
+    <string name="start冒号">出发:</string>
+    <string name="finish冒号">到达:</string>
+    <string name="timeBonus括号s括号冒号">减秒(s):</string>
+    <string name="note冒号">备注:</string>
 </resources>

@@ -19,6 +19,8 @@ import edu.zjut.cyclingClubRaceTool.R
 import edu.zjut.cyclingClubRaceTool.databinding.FragmentRiderListBinding
 import edu.zjut.cyclingClubRaceTool.databinding.RiderListItemBinding
 import edu.zjut.cyclingClubRaceTool.model.Rider
+import edu.zjut.cyclingClubRaceTool.ui.sub.EditRider
+import edu.zjut.cyclingClubRaceTool.ui.sub.EditStartRider
 import edu.zjut.cyclingClubRaceTool.ui.sub.InputRiders
 import edu.zjut.cyclingClubRaceTool.ui.sub.OutputRiders
 
@@ -35,6 +37,13 @@ class RiderListFragment : Fragment() {
     // 接收第二个Activity返回的回调
     @SuppressLint("NotifyDataSetChanged")
     private val requestDataLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            adapter.notifyDataSetChanged()
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private val editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             adapter.notifyDataSetChanged()
         }
@@ -100,11 +109,12 @@ class RiderListFragment : Fragment() {
 
 
     // 下面是recyclerView代码
-    class riderAdapter() : RecyclerView.Adapter<riderAdapter.ItemViewHolder>(){
+    inner class riderAdapter() : RecyclerView.Adapter<riderAdapter.ItemViewHolder>(){
         @SuppressLint("NotifyDataSetChanged")
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
             val binding = RiderListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false )
             val holder = ItemViewHolder(binding)
+            // 删除已按钮
             binding.deleteButton.setOnClickListener{
                 val rider = AppData.riderList[holder.adapterPosition]
                 if(rider.startTime != null || rider.finishTime != null){
@@ -116,6 +126,13 @@ class RiderListFragment : Fragment() {
 //            notifyItemRangeChanged(holder.adapterPosition, itemCount)
                 notifyDataSetChanged()
             }
+            // 编辑按钮
+            binding.editButton.setOnClickListener {
+                val intent =  Intent(parent.context, EditRider::class.java)
+                intent.putExtra("objectRiderIndex", holder.adapterPosition)
+                editLauncher.launch(intent)
+            }
+
             return holder
         }
 
@@ -127,7 +144,7 @@ class RiderListFragment : Fragment() {
             val item = getNotNullFilteredRiderList()[position]
             holder.bind(item)
         }
-        class ItemViewHolder(val view: RiderListItemBinding): RecyclerView.ViewHolder(view.root){
+        inner class ItemViewHolder(val view: RiderListItemBinding): RecyclerView.ViewHolder(view.root){
             fun bind(rider: Rider){
                 view.riderId.text = itemView.context.getString(R.string.riderId, rider.id.toString())
                 view.riderName.text = rider.name
