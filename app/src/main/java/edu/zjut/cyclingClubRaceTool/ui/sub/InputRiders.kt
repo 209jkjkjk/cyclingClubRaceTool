@@ -8,6 +8,8 @@ import edu.zjut.cyclingClubRaceTool.AppData
 import edu.zjut.cyclingClubRaceTool.databinding.ActivityInputRidersBinding
 import edu.zjut.cyclingClubRaceTool.model.Rider
 import java.lang.Exception
+import java.time.Duration
+import java.time.LocalDateTime
 
 class InputRiders : AppCompatActivity() {
 
@@ -19,6 +21,8 @@ class InputRiders : AppCompatActivity() {
         binding.confirmButton.setOnClickListener {
             val text = binding.inputRiderEditText.text
             val tempList: MutableList<Rider> = mutableListOf()
+            // 日期格式化
+            val formatter = AppData.dateTimeFormatter // 定义格式
 
             try{
                 // 解析字符串 收集导入的数据
@@ -30,16 +34,25 @@ class InputRiders : AppCompatActivity() {
                     val temp = riderString.split(",")   // 逗号作为分隔符
                     val id = temp[0].toInt()
                     val name = temp[1]
+                    val startTime = if(temp[2].isEmpty()) null else LocalDateTime.parse(temp[2], formatter)
+                    val finishTime = if(temp[3].isEmpty()) null else LocalDateTime.parse(temp[3], formatter)
+                    val timeBonus = if(temp[4].isEmpty()) null else Duration.ofSeconds( temp[4].toLong())
+                    val note = if(temp[5].isEmpty()) null else temp[5]
 
                     // 检查是否有重复并且有数据的，则采用原来的
-                    val findResult = AppData.riderList.filter { it.name == name && it.id == id && (it.finishTime != null || it.startTime != null) }
+                    val findResult = AppData.riderList.filter { it.name == name && it.id == id }
                     if(findResult.isNotEmpty()){
-                        tempList.addAll(findResult)
+                        for (r in findResult){
+                            if(r.startTime == null) r.startTime = startTime
+                            if(r.finishTime == null) r.finishTime = finishTime
+                            if(r.timeBonus == null) r.timeBonus = timeBonus
+                            if(r.note == null) r.note = note
+                        }
                         continue
                     }
 
                     // 否则添加新的
-                    tempList.add(Rider(id, name, null, null))
+                    tempList.add(Rider(id, name, startTime, finishTime, timeBonus, note))
                 }
 
                 // 列表覆盖

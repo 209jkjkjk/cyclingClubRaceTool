@@ -23,7 +23,7 @@ class EditRider : AppCompatActivity() {
         val objectRider = AppData.getNotNullFilteredRiderList()[riderIndex]
 
         // 日期格式化
-        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd_HH:mm:ss.SSSS") // 定义格式
+        val formatter = AppData.dateTimeFormatter // 定义格式
         // 填充字段
         binding.idEditText.setText(objectRider.id.toString())
         binding.nameEditText.setText(objectRider.name)

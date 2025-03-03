@@ -15,13 +15,25 @@ class OutputRiders : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityOutputRidersBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        // 日期格式化
+        val formatter = AppData.dateTimeFormatter // 定义格式
         // 以csv格式输出人员名单
         val sb = StringBuilder()
         for(rider in AppData.riderList){
             // 跳过空名或空id的rider
             if(rider.id == null || rider.name.isEmpty()) continue
-            sb.append("${rider.id},${rider.name}\n")
+            sb.append(rider.id.toString())
+            sb.append(",")
+            sb.append(rider.name)
+            sb.append(",")
+            if(rider.startTime != null)sb.append(AppData.dateTimeFormatter.format(rider.startTime))
+            sb.append(",")
+            if(rider.finishTime != null)sb.append(AppData.dateTimeFormatter.format(rider.finishTime))
+            sb.append(",")
+            if(rider.timeBonus != null) sb.append(rider.timeBonus!!.seconds.toString())
+            sb.append(",")
+            if(rider.note != null) sb.append(rider.note)
+            sb.append("\n")
         }
         if(sb.isEmpty())sb.append("不存在骑手，或所有骑手的id或姓名为空")
 

@@ -11,7 +11,7 @@
         android:id="@+id/inputRiderEditText"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:hint="@string/inputRidersHint"
+        android:hint="导入不会覆盖已有成绩，\n会合并骑手的出发和合并成绩"
         android:inputType="textMultiLine"
         android:gravity="top"
         android:padding="10dp"
