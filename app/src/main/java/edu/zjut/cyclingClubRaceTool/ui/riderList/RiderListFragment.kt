@@ -46,6 +46,7 @@ class RiderListFragment : Fragment() {
     private val editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             adapter.notifyDataSetChanged()
+            AppData.saveDataToFile(this.requireContext())
         }
     }
 
@@ -68,7 +69,6 @@ class RiderListFragment : Fragment() {
         val inputName = binding.inputRiderName
         binding.addRider.setOnClickListener {
             val id = inputId.text.toString().toIntOrNull()
-            Log.d("zjut", id.toString())
             if (id == null) {
                 Toast.makeText(context, "id必须为整数", Toast.LENGTH_LONG).show()
                 return@setOnClickListener

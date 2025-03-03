@@ -18,6 +18,13 @@ data class Rider(var id: Int?, var name: String): Serializable{
         this.finishTime = endTime
     }
 
+    constructor(id: Int?, name: String, startTime: LocalDateTime?, endTime: LocalDateTime?, timeBonus:Duration?, note:String?):this(id, name){
+        this.startTime = startTime
+        this.finishTime = endTime
+        this.timeBonus = timeBonus
+        this.note = note
+    }
+
     constructor(rider: Rider):this(rider.id, rider.name){
         this.startTime = rider.startTime
         this.finishTime = rider.finishTime

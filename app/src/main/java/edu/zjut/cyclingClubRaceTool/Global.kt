@@ -9,12 +9,13 @@ import java.io.BufferedWriter
 import java.io.IOException
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
+import java.time.Duration
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 // 全局数据
 object AppData {
-    val df = DateTimeFormatter.ofPattern("yyyyMMdd_HH:mm:ss.SSSS")
+    val dateTimeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd_HH:mm:ss.SSSS")
     // 工作模式
     var appMode = AppMode.Finnish
     // 选手列表
@@ -83,15 +84,19 @@ object AppData {
                     it.newLine()
                     it.write(r.name)
                     it.newLine()
-                    if(r.startTime == null) it.write("null") else it.write(df.format(r.startTime))
+                    if(r.startTime == null) it.write("null") else it.write(dateTimeFormatter.format(r.startTime))
                     it.newLine()
-                    if(r.finishTime == null) it.write("null") else it.write(df.format(r.finishTime))
+                    if(r.finishTime == null) it.write("null") else it.write(dateTimeFormatter.format(r.finishTime))
+                    it.newLine()
+                    if(r.timeBonus == null) it.write("null") else it.write(r.timeBonus!!.seconds.toString())
+                    it.newLine()
+                    if(r.note == null) it.write("null") else it.write(r.note)
                     it.newLine()
                 }
             }
             writer.close()
-        }catch (e: IOException){
-            e.printStackTrace()
+        }catch (e :Exception){
+            Log.d("zjut", e.message.toString())
         }
     }
 
@@ -109,15 +114,19 @@ object AppData {
                     val id = if(idstr == "null") null else idstr.toInt()
                     val name = it.readLine()
                     val startTimeStr = it.readLine()
-                    val startTime:LocalDateTime? = if(startTimeStr == "null") null else LocalDateTime.parse(startTimeStr, df)
+                    val startTime:LocalDateTime? = if(startTimeStr == "null") null else LocalDateTime.parse(startTimeStr, dateTimeFormatter)
                     val endTimeStr = it.readLine()
-                    val endTime:LocalDateTime? = if(endTimeStr == "null") null else LocalDateTime.parse(endTimeStr, df)
-                    riderList.add(Rider(id, name, startTime, endTime))
+                    val endTime:LocalDateTime? = if(endTimeStr == "null") null else LocalDateTime.parse(endTimeStr, dateTimeFormatter)
+                    val timeBonusStr = it.readLine()
+                    val timeBonus:Duration? = if(timeBonusStr == "null") null else Duration.ofSeconds(timeBonusStr.toLong())
+                    val noteStr = it.readLine()
+                    val note = if(startTimeStr == "null") null else noteStr
+                    riderList.add(Rider(id, name, startTime, endTime, timeBonus, note))
                 }
             }
             Log.d("zjut", "数量${riderList.count()}")
-        }catch (e :IOException){
-            e.printStackTrace()
+        }catch (e :Exception){
+            Log.d("zjut", e.message.toString())
         }
     }
 

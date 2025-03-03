@@ -37,6 +37,11 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    override fun onStop() {
+        super.onStop()
+        saveDataToFile(this)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         saveDataToFile(this)
