@@ -47,6 +47,7 @@ class InputRiders : AppCompatActivity() {
                             if(r.finishTime == null) r.finishTime = finishTime
                             if(r.timeBonus == null) r.timeBonus = timeBonus
                             if(r.note == null) r.note = note
+                            tempList.add(r)
                         }
                         continue
                     }
