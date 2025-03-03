@@ -32,7 +32,7 @@ class InputRiders : AppCompatActivity() {
                     val name = temp[1]
 
                     // 检查是否有重复并且有数据的，则采用原来的
-                    val findResult = AppData.riderList.filter { it.name == name && it.id == id && (it.endTime != null || it.startTime != null) }
+                    val findResult = AppData.riderList.filter { it.name == name && it.id == id && (it.finishTime != null || it.startTime != null) }
                     if(findResult.isNotEmpty()){
                         tempList.addAll(findResult)
                         continue

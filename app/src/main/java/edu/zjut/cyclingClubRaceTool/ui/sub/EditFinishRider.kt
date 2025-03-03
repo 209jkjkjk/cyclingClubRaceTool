@@ -28,7 +28,7 @@ class EditFinishRider : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             result.data?.let{
                 val exchangeRider = it.getSerializableExtra("exchangeRider") as Rider
-                objectRider.endTime = exchangeRider.endTime
+                objectRider.finishTime = exchangeRider.finishTime
                 setResult(RESULT_OK)
                 finish()
             }
@@ -63,7 +63,7 @@ class EditFinishRider : AppCompatActivity() {
             Toast.makeText(this, "长按删除", Toast.LENGTH_SHORT).show()
         }
         binding.clearButton.setOnLongClickListener {
-            objectRider.endTime = null
+            objectRider.finishTime = null
             Toast.makeText(this, "到达成绩已清空", Toast.LENGTH_SHORT).show()
             setResult(RESULT_OK)
             finish()

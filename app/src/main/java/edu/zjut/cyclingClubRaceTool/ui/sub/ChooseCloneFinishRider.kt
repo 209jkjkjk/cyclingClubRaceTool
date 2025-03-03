@@ -36,7 +36,7 @@ class ChooseCloneFinishRider : AppCompatActivity() {
 
             binding.confirmButton.setOnClickListener{
                 val resultRider = AppData.getNotNullFilteredRiderList()[holder.adapterPosition]
-                resultRider.endTime = tempRider.endTime
+                resultRider.finishTime = tempRider.finishTime
                 setResult(RESULT_OK)
                 finish()
             }

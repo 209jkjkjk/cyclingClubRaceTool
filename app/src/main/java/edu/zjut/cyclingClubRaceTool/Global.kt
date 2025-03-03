@@ -45,21 +45,21 @@ object AppData {
     // 找到下一个没有完赛的选手
     fun getNextFinishRider(): Rider?{
         tryGetNextRider()?.let{
-            if (it.endTime == null) return it
+            if (it.finishTime == null) return it
         }
         return try {
-            riderList.first{it.endTime == null}
+            riderList.first{it.finishTime == null}
         } catch (e:NoSuchElementException){
             null
         }
     }
 
     fun getFinishFilteredRiderList(): List<Rider>{
-        return riderList.filter{it.endTime != null}
+        return riderList.filter{it.finishTime != null}
     }
 
     fun getStartFilteredRiderList(): List<Rider>{
-        return riderList.filter{it.endTime == null}
+        return riderList.filter{it.finishTime == null}
     }
 
     // 获得id不为null的骑手列表
@@ -85,7 +85,7 @@ object AppData {
                     it.newLine()
                     if(r.startTime == null) it.write("null") else it.write(df.format(r.startTime))
                     it.newLine()
-                    if(r.endTime == null) it.write("null") else it.write(df.format(r.endTime))
+                    if(r.finishTime == null) it.write("null") else it.write(df.format(r.finishTime))
                     it.newLine()
                 }
             }

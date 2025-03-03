@@ -39,7 +39,7 @@ class ChooseExchangeFinishRider : AppCompatActivity() {
                 val intent = Intent()
                 val resultRider = AppData.getNotNullFilteredRiderList()[holder.adapterPosition]
                 intent.putExtra("exchangeRider", Rider(resultRider))    // 注意要先复制，再修改
-                resultRider.endTime = tempRider.endTime
+                resultRider.finishTime = tempRider.finishTime
                 setResult(RESULT_OK, intent)
                 finish()
             }

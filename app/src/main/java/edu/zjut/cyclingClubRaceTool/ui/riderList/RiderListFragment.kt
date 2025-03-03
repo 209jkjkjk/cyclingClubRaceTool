@@ -107,7 +107,7 @@ class RiderListFragment : Fragment() {
             val holder = ItemViewHolder(binding)
             binding.deleteButton.setOnClickListener{
                 val rider = AppData.riderList[holder.adapterPosition]
-                if(rider.startTime != null || rider.endTime != null){
+                if(rider.startTime != null || rider.finishTime != null){
                     Toast.makeText(parent.context, "该骑手存在成绩，删除失败", Toast.LENGTH_LONG).show()
                     return@setOnClickListener
                 }

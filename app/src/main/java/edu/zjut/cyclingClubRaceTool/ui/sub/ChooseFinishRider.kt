@@ -35,7 +35,7 @@ class ChooseFinishRider : AppCompatActivity() {
                 ChooseListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             val holder = ItemViewHolder(binding)
             binding.confirmButton.setOnClickListener{
-                getStartFilteredRiderList()[holder.adapterPosition].endTime = tempRider.endTime
+                getStartFilteredRiderList()[holder.adapterPosition].finishTime = tempRider.finishTime
                 AppData.riderList.remove(tempRider)
                 setResult(RESULT_OK, intent)
                 finish()

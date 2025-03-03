@@ -94,7 +94,7 @@ class HomeFragment : Fragment() {
                 binding.timeButton.setOnClickListener {
                     val tempRider = Rider(null, "")
                     AppData.riderList.add(tempRider)
-                    tempRider.endTime = LocalDateTime.now()
+                    tempRider.finishTime = LocalDateTime.now()
                     finishAdapter!!.notifyDataSetChanged()
                 }
             }
@@ -150,7 +150,7 @@ class HomeFragment : Fragment() {
                     val position = adapterPosition
                     // 如果已经有时间则不能选中，并删除之前的选中
                     if((AppData.appMode == AppMode.Start && getNotNullFilteredRiderList()[position].startTime != null) ||
-                        (AppData.appMode == AppMode.Finnish && getNotNullFilteredRiderList()[position].endTime != null)){
+                        (AppData.appMode == AppMode.Finnish && getNotNullFilteredRiderList()[position].finishTime != null)){
                         selectedPosition = -1
                         notifyDataSetChanged()
                         return@setOnClickListener
@@ -218,7 +218,7 @@ class HomeFragment : Fragment() {
                 view.riderName.text = rider.name
                 val df = DateTimeFormatter.ofPattern("HH:mm:ss.SSSS")
                 // 根据运行模式切换默认字样
-                view.riderTime.text = if(rider.endTime == null) "未到达" else df.format(rider.endTime)
+                view.riderTime.text = if(rider.finishTime == null) "未到达" else df.format(rider.finishTime)
             }
         }
     }
